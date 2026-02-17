@@ -17,11 +17,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     ResponseEntity<Map<String,Object>> handleResourceError(ResourceNotFoundException ex){
         Map<String,Object> response = new HashMap<>();
-        response.put("time stamp: ", LocalDateTime.now());
-        response.put("message: ", ex.getMessage());
-        response.put("status: ", HttpStatus.NOT_FOUND.value());
+        response.put("time stamp", LocalDateTime.now());
+        response.put("message", ex.getMessage());
+        response.put("status", HttpStatus.NOT_FOUND.value());
 
-        return ResponseEntity.badRequest().body(response);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
